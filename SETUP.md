@@ -4,7 +4,7 @@
   </tr>
   <tr>
     <td width="17%" align="center"><a href="README.md">Introduction</a></td>
-    <td width="16%" align="center"><b>1. Connecting to your F1 instance</b></td> 
+    <td width="16%" align="center"><b>1. Connecting to your F1 instance</b></td>
     <td width="17%" align="center"><a href="FFMPEG_Lab.md">2. Experiencing F1 acceleration</a></td>
     <td width="17%" align="center"><a href="FILTER2D_Lab.md">3. Developing F1 applications</a></td>
     <td width="16%" align="center"><a href="AVFILTER_Lab.md">4. Creating a custom FFmpeg plugin</td>
@@ -30,7 +30,7 @@ If you have not received these instructions, please contact an Xilinx event staf
 
 1. Open a web browser.
 
-1. Type in the **link to your preconfigured EC2 F1 instance** from your handout. 
+1. Type in the **link to your preconfigured EC2 F1 instance** from your handout.
     - You will be asked to sign-in before accessing your instance in the AWS EC2 Console.
 
 1. In the AWS sign-in page, enter the **Account ID** from your handout.
@@ -48,7 +48,7 @@ If you have not received these instructions, please contact an Xilinx event staf
 
     ![Start](./images/setup_lab/start1.png?raw=true)
 
-    - Allow about 10 seconds for the instance to start and be in the **Running** state. 
+    - Allow about 10 seconds for the instance to start and be in the **Running** state.
     - If needed, click the **Refresh** icon (![Refresh](./images/setup_lab/refresh2.png?raw=true)) in the top-right corner of the EC2 Console to update the instance status information.
 
 1. Once the instance is running, find and note the **IPv4 Public IP** address of your instance.
@@ -66,19 +66,19 @@ The instance you just started is preconfigured with remote desktop protocol (RDP
 
 1. **_IMPORTANT_**: Before connecting, set your remote desktop client to use **24-bit for color depth**
     - On Windows: In the bottom-left corner of connection prompt, click **Options**, select the **Display** tab and set **Colors** to **True Colors (24 bit)**
-      
+
 1. In the RDP client, enter the **IPv4 Public IP** of your instance.
 
-1. Click **Connect**. This should bring up a message about connection certificates. 
+1. Click **Connect**. This should bring up a message about connection certificates.
 
 1. Click **Yes** to dismiss the message. The Remote Desktop Connection window opens with a login prompt.
 
 1. Login with the following credentials:
     - User: **centos**
     - Password: _Centos OS password on your handout_
-   
+
     ![Remote](./images/setup_lab/remote1.png?raw=true)
-   
+
 1. Click **Ok**.
 
 You should now be connected to the remote F1 instance running Centos 7.
@@ -87,7 +87,7 @@ You should now be connected to the remote F1 instance running Centos 7.
 
 1. In the remote instance, open **Firefox** from the **Applications** menu (located in top left corner of the desktop)
     - As it opens, the browser automatically loads this README file.
-    
+
 1. Continue following the lab instructions from within the remote instance and the web browser.
     - We suggest you perform all your copy-paste from the instructions to the shell within the RDP session to avoid issues.
 
@@ -102,12 +102,11 @@ You should now be connected to the remote F1 instance running Centos 7.
     git clone https://github.com/Xilinx/SME-Developer-Labs.git
     ```
 
-1. Source the SDAccel environment. 
+1. Source the SDAccel environment.
 
     ```bash  
-    cd ~/aws-fpga
+    cd ~/src/project_data/aws-fpga
     source sdaccel_setup.sh
-    source $XILINX_SDX/settings64.sh 
     ```
 
     *Note: the sdaccel_setup.sh script might generate warning messages, but these can be safely ignored.*
@@ -130,14 +129,14 @@ The hello world example is an OpenCL application with a simple vector-addition a
 1. Confirm the presence of the precompiled FPGA binary.
 
     ```bash
-    ls -la ./xclbin/vector_addition.hw.xilinx_aws-vu9p-f1_4ddr-xpr-2pr_4_0.awsxclbin
+    ls -la ./xclbin/vector_addition.hw.xilinx_aws-vu9p-f1-04261818_dynamic_5_0.awsxclbin
     ```
 
 1. Execute the host application with the precompiled FPGA binary on the F1 instance.
 
     ```bash
     sudo sh
-    source /opt/Xilinx/SDx/2017.1.rte/setup.sh
+    source /opt/xilinx/xrt/setup.sh
     ./helloworld
     ```
 
@@ -149,10 +148,12 @@ The hello world example is an OpenCL application with a simple vector-addition a
     platform Name: Xilinx
     Vendor Name : Xilinx
     Found Platform
-    Found Device=xilinx:aws-vu9p-f1:4ddr-xpr-2pr:4.0
+    Found Device=xilinx_aws-vu9p-f1-04261818_dynamic_5_0
     XCLBIN File Name: vector_addition
-    INFO: Importing ./vector_addition.hw.xilinx_aws-vu9p-f1_4ddr-xpr-2pr_4_0.awsxclbin
-    Loading: './vector_addition.hw.xilinx_aws-vu9p-f1_4ddr-xpr-2pr_4_0.awsxclbin'
+    INFO: Importing xclbin/vector_addition.hw.xilinx_aws-vu9p-f1-04261818_dynamic_5_0.awsxclbin
+    Loading: 'xclbin/vector_addition.hw.xilinx_aws-vu9p-f1-04261818_dynamic_5_0.awsxclbin'
+    INFO: Could not load AFI for data retention, code: 18 - Loading in classic mode.
+    AFI load complete.
     Result =
     Hello World !!!
     Hello World !!!
